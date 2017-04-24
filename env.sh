@@ -1,4 +1,7 @@
 #!/bin/sh
+
+set -e
+
 conf=/usr/local/leanote/conf/app.conf
 
 sed -i "s/app.secret=.*$/app.secret=${HASH} #/" $conf
