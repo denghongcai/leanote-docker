@@ -1,0 +1,27 @@
+version: '2'
+services:
+  db:
+    restart: always
+    image: mongo
+    volumes:
+      - leanote_data:/data/db
+  server:
+    environment:
+      - DB_HOST=db
+      - HASH=BlR3lygvEW5oPCUzpxE2EWX2TpxMClrkYYhtcjbMw8p1cu1idHeptdtBrsJ03km1
+      - SITE_URL=http://note.xxx.com
+    depends_on:
+      - db
+      - init
+    restart: always
+    image: denghongcai/leanote-docker:latest
+    ports:
+      - 9000:9000
+    links:
+      - db
+  init:
+    image: mongo
+    links:
+      - db
+volumes:
+  leanote_data:/data/db
