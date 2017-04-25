@@ -20,7 +20,9 @@ services:
     links:
       - db
   init:
-    image: mongo
+    image: denghongcai/leanote-docker-init
+    environment:
+      - DB_HOST=db
     links:
       - db
 volumes:
